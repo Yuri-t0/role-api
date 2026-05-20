@@ -172,11 +172,12 @@ Testes unitários cobrem:
 ##  Equipe
 
 > Preencha com os nomes do grupo
-
+ Adao Yuri RM559223
+ João Victor RM560781 
 ---
 
 ## 📎 Links
 
--  **Aplicação em produção:** `[inserir link do deploy]`
+-  **Aplicação em produção:** `role-api-production.up.railway.app`
 -  **Vídeo de apresentação:** `[inserir link do vídeo]`
--  **Repositório:** `[inserir link do GitHub]`
+-  **Repositório:** `https://github.com/Yuri-t0/role-api/blob/main/README.md`
