@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head}"><title>Admin Eventos</title></head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="container">
+    <div class="page-header">
+        <h1>Eventos</h1>
+        <a href="/admin/eventos/novo" class="btn btn-primary">+ Novo evento</a>
+    </div>
+    <div class="alert alert-success" th:if="${sucesso}" th:text="${sucesso}"></div>
+    <div class="card" style="padding:0;overflow:hidden;">
+        <table>
+            <thead><tr><th>#</th><th>Titulo</th><th>Local</th><th>Inicio</th><th>Vagas</th><th>Acoes</th></tr></thead>
+            <tbody>
+                <tr th:each="evento : ${eventos}">
+                    <td th:text="${evento.id}"></td>
+                    <td th:text="${evento.titulo}"></td>
+                    <td th:text="${evento.local.nome}"></td>
+                    <td th:text="${#temporals.format(evento.inicio, 'dd/MM/yyyy HH:mm')}"></td>
+                    <td th:text="${evento.vagasDisponiveis} + '/' + ${evento.vagasTotais}"></td>
+                    <td>
+                        <a th:href="@{/admin/eventos/editar/{id}(id=${evento.id})}" class="btn btn-secondary btn-sm">Editar</a>
+                        <form th:action="@{/admin/eventos/excluir/{id}(id=${evento.id})}" method="post" style="display:inline;" onsubmit="return confirm('Confirmar exclusao?')">
+                            <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div th:if="${#lists.isEmpty(eventos)}" style="text-align:center;padding:2rem;color:#888;">Nenhum evento.</div>
+    </div>
+</div>
+</body>
+</html>

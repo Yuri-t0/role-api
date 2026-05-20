@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head}"><title>Eventos</title></head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="container">
+    <h1>Eventos</h1>
+    <div class="eventos-grid">
+        <div class="evento-card" th:each="evento : ${eventos}">
+            <div class="evento-card-header"><h3 th:text="${evento.titulo}"></h3></div>
+            <div class="evento-card-body">
+                <p>Local: <span th:text="${evento.local.nome}"></span></p>
+                <p>Inicio: <span th:text="${#temporals.format(evento.inicio, 'dd/MM/yyyy HH:mm')}"></span></p>
+                <p>Fim: <span th:text="${#temporals.format(evento.fim, 'dd/MM/yyyy HH:mm')}"></span></p>
+                <p th:text="${#strings.abbreviate(evento.descricao, 110)}"></p>
+            </div>
+            <div class="evento-card-footer">
+                <span class="vagas" th:text="'Vagas: ' + ${evento.vagasDisponiveis} + '/' + ${evento.vagasTotais}"></span>
+                <a th:href="@{/eventos/{id}(id=${evento.id})}" class="btn btn-primary btn-sm">Detalhes</a>
+            </div>
+        </div>
+    </div>
+    <div th:if="${#lists.isEmpty(eventos)}" class="card" style="text-align:center;color:#888;padding:2rem;">Nenhum evento cadastrado.</div>
+</div>
+</body>
+</html>

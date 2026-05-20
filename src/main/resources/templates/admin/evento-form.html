@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head}"><title>Evento Form</title></head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="container" style="max-width:650px;">
+    <a href="/admin/eventos" style="color:#e94560;font-size:0.9rem;text-decoration:none;">Voltar</a>
+    <div class="card" style="margin-top:1rem;">
+        <h2 th:text="${modoEdicao} ? 'Editar Evento' : 'Novo Evento'" style="margin-bottom:1.5rem;"></h2>
+        <div class="alert alert-danger" th:if="${erro}" th:text="${erro}"></div>
+        <form th:action="${modoEdicao} ? @{/admin/eventos/editar/{id}(id=${eventoId})} : @{/admin/eventos}" method="post" th:object="${evento}">
+            <div class="form-group">
+                <label>Titulo</label>
+                <input type="text" th:field="*{titulo}" placeholder="Nome do evento"/>
+                <span class="error-msg" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
+            </div>
+            <div class="form-group">
+                <label>Descricao</label>
+                <textarea th:field="*{descricao}" rows="3"></textarea>
+                <span class="error-msg" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                <div class="form-group">
+                    <label>Inicio</label>
+                    <input type="datetime-local" th:field="*{inicio}"/>
+                </div>
+                <div class="form-group">
+                    <label>Fim</label>
+                    <input type="datetime-local" th:field="*{fim}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Total de vagas</label>
+                <input type="number" th:field="*{vagasTotais}" min="1"/>
+                <span class="error-msg" th:if="${#fields.hasErrors('vagasTotais')}" th:errors="*{vagasTotais}"></span>
+            </div>
+            <div class="form-group">
+                <label>Organizador</label>
+                <select th:field="*{organizadorId}">
+                    <option value="">Selecione...</option>
+                    <option th:each="u : ${usuarios}" th:value="${u.id}" th:text="${u.nome} + ' - ' + ${u.email}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Local</label>
+                <select th:field="*{localId}">
+                    <option value="">Selecione...</option>
+                    <option th:each="l : ${locais}" th:value="${l.id}" th:text="${l.nome}"></option>
+                </select>
+            </div>
+            <div style="display:flex;gap:1rem;margin-top:1rem;">
+                <button type="submit" class="btn btn-primary" th:text="${modoEdicao} ? 'Salvar' : 'Criar evento'"></button>
+                <a href="/admin/eventos" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

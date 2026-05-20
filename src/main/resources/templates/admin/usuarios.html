@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head}"><title>Usuarios</title></head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="container">
+    <div class="page-header"><h1>Usuarios</h1><a href="/admin" class="btn btn-secondary">Voltar</a></div>
+    <div class="card" style="padding:0;overflow:hidden;">
+        <table>
+            <thead><tr><th>#</th><th>Nome</th><th>Email</th><th>Telefone</th><th>Perfil</th></tr></thead>
+            <tbody>
+                <tr th:each="usuario : ${usuarios}">
+                    <td th:text="${usuario.id}"></td>
+                    <td th:text="${usuario.nome}"></td>
+                    <td th:text="${usuario.email}"></td>
+                    <td th:text="${usuario.telefone}"></td>
+                    <td><span class="badge" th:classappend="${usuario.role.name() == 'ADMIN'} ? 'badge-admin' : 'badge-user'" th:text="${usuario.role}"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

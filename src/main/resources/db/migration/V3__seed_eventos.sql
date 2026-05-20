@@ -1,0 +1,1 @@
+-- Eventos inseridos via DataInitializer ou manualmente pelo admin

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head}"><title>Minhas Presencas</title></head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="container">
+    <h1>Minhas Presencas</h1>
+    <div class="card" th:if="${#lists.isEmpty(presencas)}" style="text-align:center;color:#888;padding:2rem;">
+        Voce ainda nao confirmou presenca em nenhum evento.
+        <br/><br/><a href="/eventos" class="btn btn-primary">Ver eventos</a>
+    </div>
+    <table th:if="${!#lists.isEmpty(presencas)}">
+        <thead>
+            <tr><th>Evento</th><th>Local</th><th>Data do evento</th><th>Confirmado em</th><th></th></tr>
+        </thead>
+        <tbody>
+            <tr th:each="presenca : ${presencas}">
+                <td th:text="${presenca.evento.titulo}"></td>
+                <td th:text="${presenca.evento.local.nome}"></td>
+                <td th:text="${#temporals.format(presenca.evento.inicio, 'dd/MM/yyyy HH:mm')}"></td>
+                <td th:text="${#temporals.format(presenca.confirmadoEm, 'dd/MM/yyyy HH:mm')}"></td>
+                <td><a th:href="@{/eventos/{id}(id=${presenca.evento.id})}" class="btn btn-secondary btn-sm">Ver evento</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

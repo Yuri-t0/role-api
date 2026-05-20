@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head}"><title>Evento</title></head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="container" style="max-width:750px;">
+    <a href="/eventos" style="color:#e94560;font-size:0.9rem;text-decoration:none;">Voltar para eventos</a>
+    <div class="card" style="margin-top:1rem;">
+        <div class="alert alert-success" th:if="${sucesso}" th:text="${sucesso}"></div>
+        <div class="alert alert-danger"  th:if="${erro}"   th:text="${erro}"></div>
+        <h1 th:text="${evento.titulo}" style="margin-bottom:1.2rem;"></h1>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
+            <div>
+                <p style="color:#888;font-size:0.85rem;">Local</p>
+                <p style="font-weight:500;" th:text="${evento.local.nome}"></p>
+                <p style="color:#666;font-size:0.88rem;" th:text="${evento.local.endereco}"></p>
+            </div>
+            <div>
+                <p style="color:#888;font-size:0.85rem;">Data</p>
+                <p>Inicio: <span th:text="${#temporals.format(evento.inicio, 'dd/MM/yyyy HH:mm')}"></span></p>
+                <p>Fim: <span th:text="${#temporals.format(evento.fim, 'dd/MM/yyyy HH:mm')}"></span></p>
+            </div>
+            <div>
+                <p style="color:#888;font-size:0.85rem;">Vagas</p>
+                <p th:text="${evento.vagasDisponiveis} + ' de ' + ${evento.vagasTotais} + ' disponiveis'"></p>
+            </div>
+            <div>
+                <p style="color:#888;font-size:0.85rem;">Organizador</p>
+                <p th:text="${evento.organizador.nome}"></p>
+            </div>
+        </div>
+        <p style="margin-bottom:1.5rem;" th:text="${evento.descricao}"></p>
+        <div sec:authorize="isAuthenticated()">
+            <div th:if="${!jaConfirmou}">
+                <form th:action="@{/eventos/{id}/confirmar-presenca(id=${evento.id})}" method="post">
+                    <button type="submit" class="btn btn-primary" th:disabled="${evento.vagasDisponiveis == 0}">Confirmar presenca</button>
+                    <span th:if="${evento.vagasDisponiveis == 0}" style="color:#dc3545;margin-left:1rem;">Evento esgotado</span>
+                </form>
+            </div>
+            <div th:if="${jaConfirmou}" style="display:flex;align-items:center;gap:1rem;">
+                <span style="color:#198754;font-weight:600;">Presenca confirmada</span>
+                <form th:action="@{/eventos/{id}/cancelar-presenca(id=${evento.id})}" method="post">
+                    <button type="submit" class="btn btn-secondary btn-sm">Cancelar presenca</button>
+                </form>
+            </div>
+        </div>
+        <div sec:authorize="!isAuthenticated()" style="margin-top:1rem;">
+            <a href="/login" class="btn btn-primary">Entrar para confirmar presenca</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

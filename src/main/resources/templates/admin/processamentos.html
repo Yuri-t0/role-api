@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head}"><title>Processamentos</title></head>
+<body>
+<div th:replace="~{fragments/layout :: navbar}"></div>
+<div class="container">
+    <div class="page-header"><h1>Processamentos RabbitMQ</h1><a href="/admin" class="btn btn-secondary">Voltar</a></div>
+    <p style="color:#666;margin-bottom:1.5rem;">Registros processados pelo consumer apos confirmacao de presenca via Feign.</p>
+    <div class="card" style="padding:0;overflow:hidden;">
+        <table>
+            <thead><tr><th>#</th><th>Evento</th><th>Local</th><th>Usuario</th><th>Vagas restantes</th><th>Processado em</th></tr></thead>
+            <tbody>
+                <tr th:each="n : ${processamentos}">
+                    <td th:text="${n.id}"></td>
+                    <td th:text="${n.eventoTitulo}"></td>
+                    <td th:text="${n.localNome}"></td>
+                    <td th:text="${n.usuarioEmail}"></td>
+                    <td th:text="${n.vagasRestantes}"></td>
+                    <td th:text="${#temporals.format(n.processadoEm, 'dd/MM/yyyy HH:mm:ss')}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div th:if="${#lists.isEmpty(processamentos)}" style="text-align:center;padding:2rem;color:#888;">
+            Nenhum processamento ainda. Confirme uma presenca para ver o fluxo.
+        </div>
+    </div>
+</div>
+</body>
+</html>
