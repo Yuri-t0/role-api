@@ -1,11 +1,11 @@
-# 🎉 Role — Plataforma de Gestão de Eventos
+#  Role — Plataforma de Gestão de Eventos
 
 > Projeto desenvolvido para a disciplina **Java Advanced** — FIAP  
 > Sprint 4 · Entrega Final
 
 ---
 
-## 📌 Sobre o Projeto
+##  Sobre o Projeto
 
 A **Role** é uma plataforma web para descoberta e gestão de eventos presenciais. O sistema resolve o problema de organização de eventos corporativos e acadêmicos, centralizando cadastro, confirmação de presença e notificações em uma única aplicação.
 
@@ -19,7 +19,7 @@ A **Role** é uma plataforma web para descoberta e gestão de eventos presenciai
 
 ---
 
-## 🏗️ Arquitetura
+##  Arquitetura
 
 ```
 role-api/
@@ -39,7 +39,7 @@ role-api/
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
 | Tecnologia | Uso |
 |---|---|
@@ -57,7 +57,7 @@ role-api/
 
 ---
 
-## ✅ Conceitos da Disciplina Aplicados
+##  Conceitos da Disciplina Aplicados
 
 - **Spring Security** com `DaoAuthenticationProvider`, `BCryptPasswordEncoder`, controle de roles (`ADMIN` / `USER`) e CSRF configurado corretamente para aplicação com sessão
 - **RabbitMQ** com fila principal, exchange `Direct`, routing key e **Dead Letter Queue (DLQ)** implementada via `x-dead-letter-exchange`
@@ -69,7 +69,7 @@ role-api/
 
 ---
 
-## 🚀 Como Executar Localmente
+##  Como Executar Localmente
 
 ### Pré-requisitos
 
@@ -114,7 +114,7 @@ JDBC URL: `jdbc:h2:mem:roledb`
 
 ---
 
-## 🔄 Principais Fluxos
+##  Principais Fluxos
 
 ### Confirmação de Presença
 ```
@@ -134,7 +134,7 @@ Se o consumer lançar exceção, a mensagem é redirecionada para `role.presenca
 
 ---
 
-## 🧪 Testes
+## Testes
 
 ```bash
 mvn test
@@ -159,7 +159,7 @@ Testes unitários cobrem:
 
 ---
 
-## 📁 Migrations Flyway
+## Migrations Flyway
 
 | Arquivo | Conteúdo |
 |---|---|
@@ -169,7 +169,7 @@ Testes unitários cobrem:
 
 ---
 
-## 👥 Equipe
+##  Equipe
 
 > Preencha com os nomes do grupo
 
@@ -177,6 +177,6 @@ Testes unitários cobrem:
 
 ## 📎 Links
 
-- 🔗 **Aplicação em produção:** `[inserir link do deploy]`
-- 🎥 **Vídeo de apresentação:** `[inserir link do vídeo]`
-- 📁 **Repositório:** `[inserir link do GitHub]`
+-  **Aplicação em produção:** `[inserir link do deploy]`
+-  **Vídeo de apresentação:** `[inserir link do vídeo]`
+-  **Repositório:** `[inserir link do GitHub]`
