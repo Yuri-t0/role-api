@@ -178,6 +178,6 @@ Testes unitários cobrem:
 
 ## 📎 Links
 
--  **Aplicação em produção:** `[inserir link do deploy]`
+-  **Aplicação em produção:** `https://role-api-production.up.railway.app/`
 -  **Vídeo de apresentação:** `[inserir link do vídeo]`
 -  **Repositório:** `[inserir link do GitHub]`
