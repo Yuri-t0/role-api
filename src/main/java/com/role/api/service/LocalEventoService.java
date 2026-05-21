@@ -7,8 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-// FIX #4: service criado para que o AdminController não acesse repository diretamente
-@Service
+ @Service
 @RequiredArgsConstructor
 public class LocalEventoService {
 

@@ -24,8 +24,7 @@ public class PresencaService {
     private final UsuarioService usuarioService;
     private final PresencaProducer presencaProducer;
 
-    // FIX #7: mensagem enviada somente após commit da transação
-    @Transactional
+     @Transactional
     public Presenca confirmar(Long eventoId, String emailUsuario) {
         Usuario usuario = usuarioService.buscarPorEmail(emailUsuario);
         Evento evento = eventoService.buscarPorId(eventoId);
@@ -54,8 +53,7 @@ public class PresencaService {
         return presenca;
     }
 
-    // FIX #1: vaga devolvida ao banco corretamente
-    @Transactional
+     @Transactional
     public void cancelar(Long eventoId, String emailUsuario) {
         Usuario usuario = usuarioService.buscarPorEmail(emailUsuario);
         Presenca presenca = presencaRepository.findByUsuarioIdAndEventoId(usuario.getId(), eventoId)
@@ -77,8 +75,7 @@ public class PresencaService {
         return presencaRepository.existsByUsuarioIdAndEventoId(usuarioId, eventoId);
     }
 
-    // FIX #4: exposto para AdminController não precisar injetar repository
-    public long contarTotal() {
+     public long contarTotal() {
         return presencaRepository.count();
     }
 }

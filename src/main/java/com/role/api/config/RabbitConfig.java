@@ -11,9 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitConfig {
 
-    // ─── Dead Letter Queue (DLQ) ───────────────────────────────────────────────
 
-    // FIX #2: DLQ implementada de fato (antes só existia no comentário)
     @Bean
     public DirectExchange presencaDlqExchange(@Value("${role.messaging.exchange}") String exchangeName) {
         return new DirectExchange(exchangeName + ".dlq");
@@ -32,7 +30,6 @@ public class RabbitConfig {
         return BindingBuilder.bind(dlq).to(dlqExchange).with(routingKey);
     }
 
-    // ─── Fila principal (aponta para DLQ em caso de falha) ────────────────────
 
     @Bean
     public Queue presencaQueue(
@@ -57,7 +54,6 @@ public class RabbitConfig {
         return BindingBuilder.bind(presencaQueue).to(presencaExchange).with(routingKey);
     }
 
-    // ─── Conversor e Template ──────────────────────────────────────────────────
 
     @Bean
     public Jackson2JsonMessageConverter messageConverter() {

@@ -21,8 +21,7 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    // FIX C: count eficiente para o dashboard (não carrega lista inteira)
-    public long contarTotal() {
+     public long contarTotal() {
         return usuarioRepository.count();
     }
 
@@ -51,8 +50,7 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    // FIX D: atualizar() agora recebe DTO em vez de entidade diretamente (má prática corrigida)
-    public Usuario atualizar(Long id, CadastroUsuarioDTO dto) {
+     public Usuario atualizar(Long id, CadastroUsuarioDTO dto) {
         Usuario usuario = buscarPorId(id);
 
         usuario.setNome(dto.getNome());

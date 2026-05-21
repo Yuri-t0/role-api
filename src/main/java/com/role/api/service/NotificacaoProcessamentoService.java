@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-// FIX #3: removido EventoClient (chamada HTTP circular para si mesmo)
-//         substituído por injeção direta do EventoService
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -23,8 +22,7 @@ public class NotificacaoProcessamentoService {
     private final EventoService eventoService; // antes era EventoClient
 
     public void processarConfirmacao(PresencaConfirmadaMessage message) {
-        // FIX #3: exceção relançada para que a DLQ funcione corretamente
-        Evento evento = eventoService.buscarPorId(message.getEventoId());
+         Evento evento = eventoService.buscarPorId(message.getEventoId());
 
         NotificacaoProcessamento notificacao = new NotificacaoProcessamento();
         notificacao.setEventoId(message.getEventoId());

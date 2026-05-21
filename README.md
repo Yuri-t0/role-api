@@ -19,7 +19,7 @@ A **Role** é uma plataforma web para descoberta e gestão de eventos presenciai
 
 ---
 
-##  Arquitetura
+## Arquitetura
 
 ```
 role-api/
@@ -39,7 +39,7 @@ role-api/
 
 ---
 
-##  Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 | Tecnologia | Uso |
 |---|---|
@@ -57,7 +57,7 @@ role-api/
 
 ---
 
-##  Conceitos da Disciplina Aplicados
+## Conceitos da Disciplina Aplicados
 
 - **Spring Security** com `DaoAuthenticationProvider`, `BCryptPasswordEncoder`, controle de roles (`ADMIN` / `USER`) e CSRF configurado corretamente para aplicação com sessão
 - **RabbitMQ** com fila principal, exchange `Direct`, routing key e **Dead Letter Queue (DLQ)** implementada via `x-dead-letter-exchange`
@@ -146,7 +146,7 @@ Testes unitários cobrem:
 
 ---
 
-## 🔗 Integração Multidisciplinar
+##  Integração Multidisciplinar
 
 | Disciplina | Como aparece no projeto |
 |---|---|
@@ -159,7 +159,7 @@ Testes unitários cobrem:
 
 ---
 
-## Migrations Flyway
+##  Migrations Flyway
 
 | Arquivo | Conteúdo |
 |---|---|
@@ -170,14 +170,14 @@ Testes unitários cobrem:
 ---
 
 ##  Equipe
+>Adao Yuri RM559223
+>João Victor RM560781
+>
 
-> Preencha com os nomes do grupo
- Adao Yuri RM559223
- João Victor RM560781 
 ---
 
 ## 📎 Links
 
--  **Aplicação em produção:** `role-api-production.up.railway.app`
+-  **Aplicação em produção:** `[inserir link do deploy]`
 -  **Vídeo de apresentação:** `[inserir link do vídeo]`
--  **Repositório:** `https://github.com/Yuri-t0/role-api/blob/main/README.md`
+-  **Repositório:** `[inserir link do GitHub]`

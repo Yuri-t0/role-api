@@ -8,8 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface EventoRepository extends JpaRepository<Evento, Long> {
 
-    // FIX #5: query atômica para evitar race condition no decremento de vagas
-    @Modifying
+     @Modifying
     @Query("UPDATE Evento e SET e.vagasDisponiveis = e.vagasDisponiveis - 1 " +
            "WHERE e.id = :id AND e.vagasDisponiveis > 0")
     int decrementarVagaAtomico(@Param("id") Long id);

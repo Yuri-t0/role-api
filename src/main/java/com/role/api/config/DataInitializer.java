@@ -53,7 +53,6 @@ public class DataInitializer implements ApplicationRunner {
     }
 
     private void criarEventosDemo(Usuario organizador) {
-        // FIX: buscar locais já inseridos pelo V2 seed antes de criar novos — evita duplicação
         LocalEvento local1 = garantirLocal("FIAP Paulista",
                 "Av. Paulista, 1106 - Bela Vista, Sao Paulo", -23.5630, -46.6544);
 

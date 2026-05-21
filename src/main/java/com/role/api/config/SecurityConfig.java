@@ -21,8 +21,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            // FIX #6: CSRF reabilitado — app usa sessão (form login + Thymeleaf)
-            // endpoints internos da API ficam isentos pois são chamados server-side
+
             .csrf(csrf -> csrf.ignoringRequestMatchers("/api/interno/**"))
             .headers(headers -> headers.frameOptions(frame -> frame.disable()))
             .authenticationProvider(authenticationProvider())

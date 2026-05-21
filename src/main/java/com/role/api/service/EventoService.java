@@ -24,8 +24,7 @@ public class EventoService {
         return eventoRepository.findAll();
     }
 
-    // FIX C: count eficiente para dashboard
-    public long contarTotal() {
+     public long contarTotal() {
         return eventoRepository.count();
     }
 
@@ -75,8 +74,7 @@ public class EventoService {
         eventoRepository.delete(buscarPorId(id));
     }
 
-    // FIX #5: decremento atômico via query UPDATE para evitar race condition
-    @Transactional
+     @Transactional
     public void decrementarVaga(Evento evento) {
         int updated = eventoRepository.decrementarVagaAtomico(evento.getId());
         if (updated == 0) {
@@ -84,8 +82,7 @@ public class EventoService {
         }
     }
 
-    // Usado por PresencaService para devolver vaga no cancelamento
-    public Evento salvarEvento(Evento evento) {
+     public Evento salvarEvento(Evento evento) {
         return eventoRepository.save(evento);
     }
 

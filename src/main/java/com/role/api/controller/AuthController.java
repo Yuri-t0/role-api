@@ -17,8 +17,7 @@ public class AuthController {
 
     private final UsuarioService usuarioService;
 
-    // Spring Security cuida do POST /login automaticamente.
-    // Só precisamos servir a página HTML do login.
+
     @GetMapping("/login")
     public String loginPage() {
         return "login";
